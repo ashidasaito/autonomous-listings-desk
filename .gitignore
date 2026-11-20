@@ -1,0 +1,5 @@
+node_modules/
+.telegraph/
+.env
+*.log
+out/
