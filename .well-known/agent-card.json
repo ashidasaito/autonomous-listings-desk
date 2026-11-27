@@ -1,0 +1,75 @@
+{
+  "name": "Accountable Listings Desk",
+  "description": "The Accountable Listings Desk buys six parallel intelligence checks for a token listing candidate on Ethereum Sepolia and issues a signed listing risk memo (EIP-191 personal_sign, memo_id is the keccak256 of the canonical memo) with a LIST, LIST WITH CONDITIONS, or DO NOT LIST verdict and a full cost line. This registration makes the desk accountable on Concordium testnet: the desk is registered in the CIS-8004 Agent Registry with an ERC-8004 Agent Card, its Ethereum address is bound to its Concordium owner account with CIS-8, and it sells memos to other agents over x402 with sponsored transactions.",
+  "url": "https://niigakiriza.github.io/autonomous-listings-desk/.well-known/agent-card.json",
+  "version": "1.0.0",
+  "defaultInputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "authentication": {
+    "schemes": []
+  },
+  "skills": [
+    {
+      "id": "request-listing-memo",
+      "name": "Request listing memo",
+      "description": "Returns a signed listing risk memo for a token address.",
+      "tags": [
+        "listing",
+        "risk",
+        "memo",
+        "telegraph"
+      ]
+    },
+    {
+      "id": "verify-memo",
+      "name": "Verify memo",
+      "description": "Verifies a memo signature and registry entry.",
+      "tags": [
+        "verify",
+        "memo",
+        "signature",
+        "registry"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://docs.concordium.com/a2a-extensions/concordium-badge/v1",
+        "description": "Verified by Concordium badge — on-chain agent identity in a CIS-8004 registry",
+        "required": false,
+        "params": {
+          "tokenAddress": null,
+          "owner": {
+            "account": "ccd:4221332d34e1694168c2a0c0b3fd0f27:3vnoVgNk65yhpMM811gwXf7AMzY8xF3CQqENK9j7k74doKALYJ"
+          },
+          "agentWallet": "ccd:4221332d34e1694168c2a0c0b3fd0f27:3vnoVgNk65yhpMM811gwXf7AMzY8xF3CQqENK9j7k74doKALYJ",
+          "contracts": {
+            "cis8004": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0",
+            "cis8": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "verify": "Resolve tokenAddress via CIS-8004 agent_of; confirm owner + status=Active + card SHA-256 == metadata_hash.",
+          "verification": {
+            "service": "Concordium Agent Registry",
+            "verifyUrl": "https://agent-registry-mcp.concordium.com/v1/badge-check/3vnoVgNk65yhpMM811gwXf7AMzY8xF3CQqENK9j7k74doKALYJ",
+            "mcp": "https://agent-registry-mcp.concordium.com/mcp",
+            "docs": "https://docs.concordium.com/en/mainnet/technical-reference/agent-registry/concordium-badge.html"
+          }
+        }
+      }
+    ]
+  },
+  "provider": {
+    "organization": "Riza",
+    "url": "https://github.com/niigakiriza/autonomous-listings-desk"
+  },
+  "documentationUrl": "https://github.com/niigakiriza/autonomous-listings-desk"
+}
